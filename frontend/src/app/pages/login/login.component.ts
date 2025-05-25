@@ -6,12 +6,13 @@ import {Router} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {NgForOf, NgIf} from "@angular/common";
 import {TokenService} from "../../services/token/token.service";
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    FormsModule, HttpClientModule, NgIf, NgForOf
+    FormsModule, HttpClientModule, NgIf, NgForOf, MatSlideToggleModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
