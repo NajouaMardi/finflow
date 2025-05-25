@@ -1,0 +1,46 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/finflow
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  mail:
+    host: localhost
+    port: 1025
+    username: najoua
+    password: najoua
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enable: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+
+
+application:
+  security:
+    jwt:
+      secret-key: 4d9dd2cbd3a9cd7035b821fe5d0f4789784aace14f54eed917a14bd162105d616ffc3104824212c04ee876f39796ffde475491bcb880e3ce71004183fdfdbd6bc822ac157d7230b286f1df7c7f184e50290472b8e2cae084c66807c11747c9df3248aee20b3214cd2212d78b30388e100218af49cf6084626d817c8ca6835f31
+      expiration: 86400000 #one day
+
+  mailing:
+      frontend:
+        activation-url: http://localhost:4200/activate-account
+
+
+server:
+    port: 8088
