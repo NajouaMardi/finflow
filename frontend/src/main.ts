@@ -5,7 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app/app.component';
 import { appConfig } from './app/app.config';
 
-import { ApiModule } from './app/services/api.module'; // adjust the path to ApiModule if needed
+import { ApiModule } from './app/services/api.module';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // adjust the path to ApiModule if needed
 
 bootstrapApplication(AppComponent, {
   ...appConfig,
@@ -16,6 +17,6 @@ bootstrapApplication(AppComponent, {
         rootUrl: 'http://localhost:8088/api/v1' // <-- replace with your actual backend URL
       })
     ),
-    ...(appConfig.providers || []) // keep your original providers from appConfig
+    ...(appConfig.providers || []), provideAnimationsAsync() // keep your original providers from appConfig
   ]
 }).catch((err) => console.error(err));
