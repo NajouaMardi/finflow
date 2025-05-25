@@ -3,6 +3,7 @@ import {LoginComponent} from "./pages/login/login.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {ActivateAccountComponent} from "./pages/activate-account/activate-account.component";
 import {HomeComponent} from "./pages/home/home.component";
+import {authGuard} from "./services/guard/auth.guard";
 
 export const routes: Routes = [
   {
@@ -26,6 +27,12 @@ export const routes: Routes = [
     path:'home',
     component:HomeComponent
 
+  },
+  {
+    path: "assistant",
+    loadChildren:() => import('./modules/assistant/assistant.module').then(m => m.AssistantModule),
+    canActivate:[authGuard]
   }
+
 
 ];
