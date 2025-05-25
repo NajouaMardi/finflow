@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -24,6 +26,7 @@ import java.util.Collections;
 import static org.springframework.http.HttpHeaders.*;
 
 @Configuration
+@EnableJpaAuditing(auditorAwareRef =  "auditorAware")
 public class BeansConfig {
 
     @Autowired
@@ -75,6 +78,12 @@ public class BeansConfig {
 
         source.registerCorsConfiguration("/**",config);
         return new CorsFilter(source);
+    }
+
+
+    @Bean
+    public AuditorAware<String> auditorAware() {
+        return new ApplicationAuditAware();
     }
 
 }

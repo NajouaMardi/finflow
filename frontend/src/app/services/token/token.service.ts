@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 
 @Injectable({
@@ -14,7 +15,26 @@ export class TokenService {
     return localStorage.getItem('token') as string;
   }
 
-  /*isTokenValid() {
+  /*
+
+
+  get userRoles(): string[] {
+    const token = this.token;
+    if (token) {
+      const jwtHelper = new JwtHelperService();
+      const decodedToken = jwtHelper.decodeToken(token);
+      console.log(decodedToken.authorities);
+      return decodedToken.authorities;
+    }
+    return [];
+  }*/
+  isTokenNotValid() {
+    return !this.isTokenValid();
+  }
+
+
+
+  isTokenValid() {
     const token = this.token;
     if (!token) {
       return false;
@@ -30,18 +50,4 @@ export class TokenService {
     return true;
   }
 
-  isTokenNotValid() {
-    return !this.isTokenValid();
-  }
-
-  get userRoles(): string[] {
-    const token = this.token;
-    if (token) {
-      const jwtHelper = new JwtHelperService();
-      const decodedToken = jwtHelper.decodeToken(token);
-      console.log(decodedToken.authorities);
-      return decodedToken.authorities;
-    }
-    return [];
-  }*/
 }
