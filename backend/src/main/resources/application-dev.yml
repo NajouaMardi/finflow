@@ -2,8 +2,12 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/finflow
     username: postgres
-    password: postgres
+    password: fadwa
     driver-class-name: org.postgresql.Driver
+
+  main:
+    allow-bean-definition-overriding: true
+
   jpa:
     hibernate:
       ddl-auto: update
