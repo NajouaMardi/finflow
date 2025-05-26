@@ -60,6 +60,7 @@ export class MarketAnalysisComponent {
 
   stocks: Record<string, TickerView> = {};
   private last: Record<string, number> = {};
+  recs: Record<string, string[]> = {};
   private ws = new WebSocket('ws://localhost:8088/api/v1/stocks');
 
   /** robust icon map — works for BTCUSDT, BTC/USD, BTC, etc. */
@@ -99,4 +100,23 @@ export class MarketAnalysisComponent {
       }
     };
   }
+  // fetchRecs(symbol:string){
+  //   fetch(`http://localhost:8088/api/v1/recommend/${symbol}`)
+  //     .then(r=>r.json()).then(list=>this.recs[symbol]=list);
+  // }
+  fetchRecs(symbol: string) {
+    fetch(`http://localhost:8088/api/v1/recommend/${encodeURIComponent(symbol)}`)
+      .then(res => {
+        console.log('HTTP status:', res.status, res.statusText);
+        return res.json();
+      })
+      .then((list: string[]) => {
+        console.log(`Recs for ${symbol}:`, list);
+        this.recs[symbol] = list;
+      })
+      .catch(err => {
+        console.error('Recs fetch failed:', err);
+      });
+  }
+
 }
