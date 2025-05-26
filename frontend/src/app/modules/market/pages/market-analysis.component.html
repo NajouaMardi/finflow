@@ -1,19 +1,27 @@
-<div class="card" *ngIf="stock.name">
-  <div class="img">
-    <img class="icon" [src]="stock.icon" />
-  </div>
-  <div class="textBox">
-    <div class="textContent">
-      <div class="h1">{{stock.name}}<div *ngIf="stock.increased"
-                                         style="color: green ; margin: 0 10px 0 10px; float: right;">▲</div>
-        <div *ngIf="!stock.increased" style="color: red ; margin: 0 10px 0 10px; float: right;">▼</div>
-      </div>
-      <span class="span">now</span>
+<div *ngFor="let entry of stocks | keyvalue">
+  <div class="card">
+    <div class="img">
+      <!-- simple icon map; extend as you add symbols -->
+      <img class="icon"
+           [src]="{
+             'BINANCE:BTCUSDT':'/assets/btc.svg',
+             'OANDA:EUR_USD':'/assets/eurusd.svg'
+           }[entry.key] || '/assets/default.svg'">
     </div>
-    <div class="detail">Is trading at the price of ${{stock.price}}
-      <div>
+
+    <div class="textBox">
+      <div class="textContent">
+        <div class="h1">
+          {{ entry.key }}
+          <span *ngIf="entry.value.increased" style="color:green;">▲</span>
+          <span *ngIf="!entry.value.increased" style="color:red;">▼</span>
+        </div>
+        <span class="span">now</span>
+      </div>
+
+      <div class="detail">
+        Trading at ${{ entry.value.price | number:'1.2-2' }}
       </div>
     </div>
   </div>
-
-
+</div>
