@@ -1,27 +1,70 @@
-<div *ngFor="let entry of stocks | keyvalue">
-  <div class="card">
-    <div class="img">
-      <!-- simple icon map; extend as you add symbols -->
-      <img class="icon"
-           [src]="{
-             'BINANCE:BTCUSDT':'/assets/btc.svg',
-             'OANDA:EUR_USD':'/assets/eurusd.svg'
-           }[entry.key] || '/assets/default.svg'">
-    </div>
 
-    <div class="textBox">
-      <div class="textContent">
-        <div class="h1">
-          {{ entry.key }}
-          <span *ngIf="entry.value.increased" style="color:green;">▲</span>
-          <span *ngIf="!entry.value.increased" style="color:red;">▼</span>
+<!--<div *ngFor="let entry of stocks | keyvalue">-->
+<!--  <div class="card">-->
+<!--    <div class="img">-->
+<!--      <img class="icon" [src]="icon(entry.key)" />-->
+<!--    </div>-->
+
+<!--    <div class="textBox">-->
+<!--      <div class="textContent">-->
+<!--        <div class="h1">-->
+<!--          {{ entry.key }}-->
+<!--          <span *ngIf="entry.value.increased" style="color:green;">▲</span>-->
+<!--          <span *ngIf="!entry.value.increased" style="color:red;">▼</span>-->
+<!--        </div>-->
+<!--        <span class="span">now</span>-->
+<!--      </div>-->
+
+<!--      <div class="detail">-->
+<!--        Trading at ${{ entry.value.price | number:'1.2-2' }}-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-white min-h-screen">
+  <div *ngFor="let entry of stocks | keyvalue"
+       class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group hover:-translate-y-1">
+
+    <!-- Card Header with Icon -->
+    <div class="flex items-center justify-between p-6 pb-4">
+      <div class="flex items-center space-x-4">
+        <div class="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-gray-100 transition-colors">
+          <img class="w-8 h-8 object-contain" [src]="icon(entry.key)" [alt]="entry.key + ' icon'" />
         </div>
-        <span class="span">now</span>
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 tracking-tight">{{ entry.key }}</h3>
+          <span class="text-sm text-gray-500 font-medium">now</span>
+        </div>
       </div>
 
-      <div class="detail">
-        Trading at ${{ entry.value.price | number:'1.2-2' }}
+      <!-- Trend Indicator -->
+      <div class="flex items-center">
+        <span *ngIf="entry.value.increased"
+              class="inline-flex items-center px-2.5 py-1 rounded-full text-sm font-semibold bg-green-100 text-green-800">
+          <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 6.414 6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+          </svg>
+          ▲
+        </span>
+        <span *ngIf="!entry.value.increased"
+              class="inline-flex items-center px-2.5 py-1 rounded-full text-sm font-semibold bg-red-100 text-red-800">
+          <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L10 13.586l3.293-3.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+          </svg>
+          ▼
+        </span>
       </div>
     </div>
+
+    <!-- Price Section -->
+    <div class="px-6 pb-6">
+      <div class="border-t border-gray-100 pt-4">
+        <p class="text-sm text-gray-600 mb-1">Trading at</p>
+        <p class="text-2xl font-bold text-gray-900">${{ entry.value.price | number:'1.2-2' }}</p>
+      </div>
+    </div>
+
+    <!-- Accent Border -->
+    <div class="h-1 bg-gradient-to-r from-[#85144b] to-black"></div>
   </div>
 </div>
