@@ -1,0 +1,10 @@
+<h1>Market Analysis</h1>
+<div *ngIf="stockQuote">
+  <p>Current price: {{ stockQuote.c }}</p>
+  <p>High price: {{ stockQuote.h }}</p>
+  <p>Low price: {{ stockQuote.l }}</p>
+  <p>Open price: {{ stockQuote.o }}</p>
+</div>
+<div *ngIf="!stockQuote">
+  Loading data...
+</div>
