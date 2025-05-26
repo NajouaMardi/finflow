@@ -10,3 +10,9 @@ springdoc:
 server:
   servlet:
     context-path: /api/v1/
+logging:
+  level:
+    org.springframework.web.socket.server.HandshakeInterceptor: DEBUG
+    org.springframework.web.socket.WebSocketHandler: DEBUG
+    org.springframework.web.socket.sockjs: DEBUG   # if you ever add SockJS
+
