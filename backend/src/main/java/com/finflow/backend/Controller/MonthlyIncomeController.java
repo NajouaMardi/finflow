@@ -51,7 +51,7 @@ public class MonthlyIncomeController {
 
 
 
-    @GetMapping("/{userId}/{month}")
+    @GetMapping("/current/{userId}/{month}")
     public MonthlySummaryDTO getMonthlySummary(@PathVariable Integer userId, @PathVariable String month) {
         return incomeRepository.getMonthlySummary(userId, month);
     }

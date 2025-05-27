@@ -1,7 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {CategorySummaryComponent} from "../category-summary/category-summary.component";
-import {BudgetChartComponent} from "../budget-chart/budget-chart.component";
-import {User, UserService} from "../../../../services/services/user.service";
+
 import {TokenService} from "../../../../services/token/token.service";
 import {NgIf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
@@ -19,6 +17,10 @@ import {
   MatDatepickerToggle
 } from "@angular/material/datepicker";
 import {DateAdapter, MatNativeDateModule} from "@angular/material/core";
+import {CategorySummaryComponent} from "../category-summary/category-summary.component";
+import {BudgetChartComponent} from "../budget-chart/budget-chart.component";
+import {User, UserService} from "../../../../services/services/user.service";
+import {RefreshService} from "../../../../services/services/refresh.service";
 
 @Component({
   selector: 'app-user-home',
@@ -40,7 +42,7 @@ import {DateAdapter, MatNativeDateModule} from "@angular/material/core";
     MatDatepickerToggle,
     MatHint,
     MatDatepickerModule,
-    MatNativeDateModule,    // ✅ This provides DateAdapter!
+    MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule
   ],
@@ -64,7 +66,8 @@ export class UserHomeComponent {
     private tokenService: TokenService,
     private userService: UserService,
     private dialog: MatDialog, private summaryService: CategorySummaryService,
-    private dateAdapter: DateAdapter<Date>
+    private dateAdapter: DateAdapter<Date>,
+    private refreshService: RefreshService
   ) {this.dateAdapter.setLocale('en-GB'); }
 
   ngOnInit(): void {
@@ -86,7 +89,12 @@ export class UserHomeComponent {
           },
           error: err => console.error('User fetch error:', err)
         });
-    }  }
+    }
+
+    this.refreshService.refresh$.subscribe(() => {
+      this.loadMonthlySummary();       // refresh the data
+      this.onDataUpdated();            // refresh the chart if needed
+    });}
 
 
 
@@ -124,6 +132,8 @@ export class UserHomeComponent {
         this.summaryService.addCategorySummary(dto).subscribe(() => {
           // Refresh the category summary list after adding
           // e.g., you might emit an event or call a method on the child component to reload data
+          this.loadMonthlySummary();
+
           console.log('Category summary added successfully');
         }, error => {
           console.error('Error adding category summary:', error);
@@ -140,6 +150,7 @@ export class UserHomeComponent {
 
   onDataUpdated() {
     this.budgetChartComponent.loadChartData();
+    this.loadMonthlySummary();
   }
 
 

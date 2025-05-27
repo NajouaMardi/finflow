@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {HttpClientModule} from "@angular/common/http";
 import {NavbarComponent} from "./navbar/navbar.component";
+import {TokenService} from "./services/token/token.service";
+import {UserService} from "./services/services/user.service";
 
 @Component({
   selector: 'app-root',
@@ -13,4 +15,11 @@ import {NavbarComponent} from "./navbar/navbar.component";
 })
 export class AppComponent {
   title = 'frontend';
+
+
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
 }

@@ -15,6 +15,7 @@ import {MatButton} from "@angular/material/button";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 import {EditSummaryDialogComponent} from "../edit-summary-dialog/edit-summary-dialog.component";
+import {RefreshService} from "../../../../services/services/refresh.service";
 
 @Component({
   selector: 'app-category-summary',
@@ -45,7 +46,7 @@ export class CategorySummaryComponent implements OnInit, OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private dialog: MatDialog,private summaryService: CategorySummaryService) {}
+  constructor(private dialog: MatDialog,private summaryService: CategorySummaryService,private refreshService: RefreshService) {}
   ngOnInit(): void {
     // Initial data load when the component initializes
     this.loadSummaries();
@@ -102,7 +103,8 @@ export class CategorySummaryComponent implements OnInit, OnInit, AfterViewInit {
         this.summaryService.updateActualAmount(dto).subscribe(() => {
           this.loadSummaries(); // Refresh table after update
 
-          this.dataUpdated.emit();  // 🔥 Notify parent
+          this.refreshService.triggerRefresh()
+          this.dataUpdated.emit();
         }, error => {
           console.error('Failed to update spending:', error);
         });
@@ -140,6 +142,7 @@ export class CategorySummaryComponent implements OnInit, OnInit, AfterViewInit {
           console.log('Entry deleted successfully. Refreshing table...');
           // After successful deletion, reload the summaries to update the table
           this.loadSummaries();
+          this.refreshService.triggerRefresh();
         }, error => {
           console.error("Error deleting entry:", error);
           // Handle error, e.g., show an error message to the user

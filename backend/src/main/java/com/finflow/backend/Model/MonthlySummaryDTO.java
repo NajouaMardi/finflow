@@ -5,7 +5,7 @@ public class MonthlySummaryDTO {
     private double totalBudget;
     private double totalSpending;
 
-    public MonthlySummaryDTO(double totalIncome, double totalBudget, double totalSpending) {
+    public MonthlySummaryDTO(Double totalIncome, Double totalBudget, Double totalSpending) {
         this.totalIncome = totalIncome != 0.0 ? totalIncome : 0;
         this.totalBudget = totalBudget != 0.0 ? totalBudget : 0;
         this.totalSpending = totalSpending != 0.0 ? totalSpending : 0;

@@ -24,7 +24,7 @@ export class UserService {
 
 
   getMonthlySummary(userId: number, month: string): Observable<MonthlySummary> {
-    return this.http.get<MonthlySummary>(`${this.apiUrl}/incomes/${userId}/${month}`);
+    return this.http.get<MonthlySummary>(`${this.apiUrl}/incomes/current/${userId}/${month}`);
   }
 }
 export interface MonthlySummary {

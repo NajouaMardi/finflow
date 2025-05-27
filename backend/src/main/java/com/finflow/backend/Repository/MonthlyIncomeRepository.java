@@ -20,9 +20,9 @@ public interface MonthlyIncomeRepository extends JpaRepository<MonthlyIncome, In
 
     @Query("""
     select new com.finflow.backend.Model.MonthlySummaryDTO(
-        (select sum(m.amount) from MonthlyIncome m where m.user.id = :userId and m.month = :month),
-        (select sum(b.plannedAmount) from MonthlyBudget b where b.user.id = :userId and b.month = :month),
-        (select sum(s.actualAmount) from Spending s where s.user.id = :userId and s.month = :month)
+        (select coalesce(sum(m.amount), 0.0) from MonthlyIncome m where m.user.id = :userId and m.month = :month),
+        (select coalesce(sum(b.plannedAmount), 0.0) from MonthlyBudget b where b.user.id = :userId and b.month = :month),
+        (select coalesce(sum(s.actualAmount), 0.0) from Spending s where s.user.id = :userId and s.month = :month)
     )
 """)
     MonthlySummaryDTO getMonthlySummary(@Param("userId") Integer userId, @Param("month") String month);

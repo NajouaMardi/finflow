@@ -12,6 +12,7 @@ import {User, UserService} from "../../../../services/services/user.service";
 import {TokenService} from "../../../../services/token/token.service";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {RefreshService} from "../../../../services/services/refresh.service";
 
 @Component({
   selector: 'app-set-up',
@@ -120,6 +121,7 @@ export class SetUpComponent {
       .subscribe({
         next: res => {
           console.log('Saved successfully!', res);
+          this.refreshService.triggerRefresh();
           this.router.navigate(['/assistant']);
         },
         error: err => console.error('Save failed:', err)
@@ -139,7 +141,8 @@ export class SetUpComponent {
     private tokenService: TokenService,
     private userService: UserService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private refreshService: RefreshService
   ) {}
 
   ngOnInit(): void {
