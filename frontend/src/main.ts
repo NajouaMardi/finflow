@@ -6,7 +6,8 @@ import { AppComponent } from './app/app.component';
 import { appConfig } from './app/app.config';
 
 import { ApiModule } from './app/services/api.module';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // adjust the path to ApiModule if needed
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {provideCharts, withDefaultRegisterables} from "ng2-charts"; // adjust the path to ApiModule if needed
 
 bootstrapApplication(AppComponent, {
   ...appConfig,
@@ -18,5 +19,5 @@ bootstrapApplication(AppComponent, {
       })
     ),
     ...(appConfig.providers || []), provideAnimationsAsync() // keep your original providers from appConfig
-  ]
+  , provideCharts(withDefaultRegisterables())]
 }).catch((err) => console.error(err));

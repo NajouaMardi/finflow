@@ -1,0 +1,54 @@
+<div class="mat-elevation-z8" *ngIf="userId">
+  <table mat-table [dataSource]="dataSource">
+
+
+    <!-- Category -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Category </th>
+      <td mat-cell *matCellDef="let row"> {{ row.category }} </td>
+    </ng-container>
+
+    <!-- Month -->
+    <ng-container matColumnDef="month">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let row"> {{ row.month }} </td>
+    </ng-container>
+
+    <!-- Planned Amount -->
+    <ng-container matColumnDef="plannedAmount">
+      <th mat-header-cell *matHeaderCellDef> Planned </th>
+      <td mat-cell *matCellDef="let row"> {{ row.plannedAmount}} </td>
+    </ng-container>
+
+    <!-- Actual Amount -->
+    <ng-container matColumnDef="actualAmount">
+      <th mat-header-cell *matHeaderCellDef> Actual </th>
+      <td mat-cell *matCellDef="let row"> {{ row.actualAmount}} </td>
+    </ng-container>
+
+    <!-- Actions -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let row">
+        <!--<button mat-button color="primary" (click)="edit(row)">Edit</button>
+        <button mat-button color="warn" (click)="delete(row)">Delete</button>-->
+        <button mat-raised-button
+                [style.background-color]="'#7ec8e3'"
+                style="color:white"
+                (click)="edit(row)">Edit</button>
+
+        <button mat-raised-button
+                [style.background-color]="'#d9534f'"
+                style="color:white"
+                (click)="delete(row)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons>
+  </mat-paginator>
+</div>

@@ -50,4 +50,26 @@ export class TokenService {
     return true;
   }
 
+
+  getUserEmail(): string | null {
+    const token = this.token;
+    if (token) {
+      const jwtHelper = new JwtHelperService();
+      const decodedToken = jwtHelper.decodeToken(token);
+      return decodedToken.sub;
+    }
+    return null;
+  }
+
+
+  getFullName(): string | null {
+    const token = this.token;
+    if (token) {
+      const jwtHelper = new JwtHelperService();
+      const decodedToken = jwtHelper.decodeToken(token);
+      return decodedToken.fullname;
+    }
+    return null;
+  }
+
 }

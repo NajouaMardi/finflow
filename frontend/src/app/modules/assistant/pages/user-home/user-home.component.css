@@ -1,0 +1,16 @@
+.user-home-container {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.top-section {
+  display: flex;
+  flex-direction: column;  /* Stack children vertically */
+  gap: 20px;               /* Space between cards and chart */
+}
+
+.bottom-section {
+  width: 100%;
+}

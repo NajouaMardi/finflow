@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {RouterLink, RouterOutlet} from "@angular/router";
 
 @Component({
@@ -10,8 +10,12 @@ import {RouterLink, RouterOutlet} from "@angular/router";
 })
 export class MenuComponent {
 
+
+  @Input() userId!: number;
+  sidebarOpen = true;
+
   ngOnInit(): void {
-    const linkColor = document.querySelectorAll('.nav-link');
+    /*const linkColor = document.querySelectorAll('.nav-link');
     linkColor.forEach(link => {
       if (window.location.href.endsWith(link.getAttribute('href') || '')) {
         link.classList.add('active');
@@ -20,7 +24,13 @@ export class MenuComponent {
         linkColor.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
       });
-    });
+    });*/
+
+
+  }
+
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
   }
 
   logout() {
