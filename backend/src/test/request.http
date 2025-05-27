@@ -1,0 +1,2 @@
+WEBSOCKET ws://localhost:8088/api/v1/stocks
+Origin: http://localhost:4200

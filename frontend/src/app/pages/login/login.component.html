@@ -1,28 +1,83 @@
-<div class="container-fluid card login-container">
-  <h3 class="text-center">Login</h3>
-  <hr>
-  <div class="alert alert-danger" role="alert" *ngIf="errorMsg.length">
-    <p *ngFor="let msg of errorMsg">{{msg}}</p>
-  </div>
-  <div class="mb-3">
-    <label for="login" class="form-label">Email address</label>
-    <input [(ngModel)]="authRequest.email"  type="email" class="form-control" id="login" placeholder="name@example.com">
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input [(ngModel)]="authRequest.password" type="password" class="form-control" id="password" placeholder="Password">
-  </div>
-  <div class="d-flex justify-content-between mb-3">
-    <button (click)="login()" type="button" class="btn btn-primary">
-      <em class="fas fa-sign-in-alt">&nbsp;Sign in</em>
-    </button>
-    <div>
-      Don't have an account?&nbsp;
-      <button (click)="register()" type="button" class="btn btn-link">
-        Register
-      </button>
+<div class="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-8">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h3 class="text-3xl font-bold text-gray-900 tracking-tight">Login</h3>
+        <div class="mt-4 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+      </div>
+
+      <!-- Error Messages -->
+      <div *ngIf="errorMsg.length"
+           class="mb-6 p-4 rounded-lg border-l-4 border-red-400 bg-red-50"
+           role="alert">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="ml-3">
+            <div class="text-sm text-red-800">
+              <p *ngFor="let msg of errorMsg" class="font-medium">{{msg}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Fields -->
+      <div class="space-y-6">
+        <!-- Email -->
+        <div class="mb-6">
+          <label for="login" class="block text-sm font-semibold text-gray-700 mb-2">
+            Email address
+          </label>
+          <input
+            [(ngModel)]="authRequest.email"
+            type="email"
+            class="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#85144b] focus:border-[#85144b] transition-colors duration-200 text-gray-900"
+            id="login"
+            placeholder="name@example.com"
+          >
+        </div>
+
+        <!-- Password -->
+        <div class="mb-6">
+          <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">
+            Password
+          </label>
+          <input
+            [(ngModel)]="authRequest.password"
+            type="password"
+            class="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#85144b] focus:border-[#85144b] transition-colors duration-200 text-gray-900"
+            id="password"
+            placeholder="Password"
+          >
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mt-8">
+          <button
+            (click)="login()"
+            type="button"
+            class="group relative flex justify-center items-center py-3 px-6 border border-transparent text-sm font-semibold rounded-lg text-white bg-[#85144b] hover:bg-[#a01850] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#85144b] transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+          >
+            <em class="fas fa-sign-in-alt mr-2"></em>
+            Sign in
+          </button>
+
+          <div class="text-center sm:text-right">
+            <span class="text-sm text-gray-600">Don't have an account?</span>
+            <button
+              (click)="register()"
+              type="button"
+              class="ml-1 text-sm font-medium text-[#85144b] hover:text-[#a01850] focus:outline-none focus:underline transition-colors duration-200"
+            >
+              Register
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
-
 </div>

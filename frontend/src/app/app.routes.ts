@@ -5,6 +5,7 @@ import {ActivateAccountComponent} from "./pages/activate-account/activate-accoun
 import {HomeComponent} from "./pages/home/home.component";
 import {authGuard} from "./services/guard/auth.guard";
 import {MarketAnalysisComponent} from "./modules/market/pages/market-analysis.component";
+
 export const routes: Routes = [
   {
     path:'login',
@@ -34,7 +35,8 @@ export const routes: Routes = [
     canActivate:[authGuard]
   },
   {
-    path: 'market',
+
+    path: 'market-analysis',
     component: MarketAnalysisComponent
   }
 
