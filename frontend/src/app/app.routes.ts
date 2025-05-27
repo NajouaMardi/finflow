@@ -35,9 +35,9 @@ export const routes: Routes = [
     canActivate:[authGuard]
   },
   {
+
     path: 'market-analysis',
     component: MarketAnalysisComponent
   }
-
 
 ];

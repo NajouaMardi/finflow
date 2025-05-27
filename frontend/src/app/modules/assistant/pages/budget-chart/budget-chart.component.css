@@ -1,0 +1,47 @@
+.chart-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 25px 5px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.chart-title {
+  font-family: 'Monaco', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #5d0c34;
+  padding-right: 5px;
+  margin-left:40px;
+}
+
+.year-select label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #444;
+
+  padding-right:4px;
+}
+
+.year-select select {
+  padding: 3px 5px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  outline: none;
+  transition: border-color 0.3s;
+  margin-right: 40px;
+}
+
+.year-select select:focus {
+  border-color: #5a9bd5;
+}
+

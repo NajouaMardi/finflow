@@ -1,0 +1,104 @@
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+
+
+
+
+
+/* Center content inside each step form */
+.centered-step-form {
+  max-width: 400px;
+  margin: 0 auto; /* centers horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Make inputs full width */
+.full-width {
+  width: 100%;
+}
+
+/* Instruction text styling */
+.step-instruction {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0.5em 0 1em 0;
+  text-align: center;
+  max-width: 400px;
+}
+
+/* Buttons row with space between */
+.button-row {
+  margin-top: 1.5em;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Categories list styling */
+.categories-container {
+  width: 100%;
+}
+
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  border-radius: 16px;
+  padding: 0 8px;
+  height: 32px;
+  font-size: 14px;
+}
+
+.category-item button {
+  margin-left: 4px;
+  height: 24px;
+  width: 24px;
+}
+
+
+
+
+
+/* Wrapper to center the card on the page */
+.stepper-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2em;
+  background-color: #f5f5f5; /* light background for the page */
+  min-height: 100vh;
+}
+
+/* Card styling */
+.stepper-card {
+  background-color: #fafafa; /* light grey card */
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  width: 100%;
+}
+
+
+
+.stepper-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #424242;
+}

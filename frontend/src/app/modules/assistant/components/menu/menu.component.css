@@ -1,13 +1,151 @@
-a {
-  padding: 2px;
-  &:hover {
-    background-color: #d6e5f1;
-    border-radius: 5px;
-    text-decoration: underline;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  min-height: 100vh;
+  transition: margin-left 0.3s;
+}
+
+.sidebar {
+  height: 100vh;
+  width: 300px;
+  background-color: #f6f1f1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-top: 30px;
+  padding-left: 20px;
+  color: #2d3636;
+  transform: translateX(0); /* Visible by default */
+
+  transition: width 0.3s ease, padding-left 0.3s ease;
+  z-index: 2;
+  overflow: hidden;
+  border-right: 1px solid #ccc;
+}
+
+.sidebar h2 {
+  color: #85144b;
+  font-size: 24px;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 100%;
+  transition: opacity 0.3s;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 15px;
+  padding-right : 15px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #85144b;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px ;
+  border-radius: 8px;
+  transition: background-color 0.3s, padding 0.3s;
+}
+
+.sidebar ul li a:hover {
+  background-color: white;
+  color: #110101;
+}
+
+.sidebar ul li a i {
+  font-size: 22px;
+}
+
+.link-text {
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity 0.3s;
+}
+
+/* Main Content Styling */
+.main-content {
+  margin-left: 0; /* No margin */
+  padding: 30px;
+  width: 100%;
+  transition: margin-left 0.3s; /* You can even remove this if you want */
+  z-index: 0;
+  position: relative;
+}
+
+
+.main-content h1 {
+  color: #07073BFF;
+  margin-bottom: 20px;
+}
+
+.main-content p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+  position: fixed;
+  top: 24px;
+  left: 20px;
+  background-color: #85144b;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 3;
+}
+.sidebar-toggle:hover{
+  background-color: #ffffff;
+  color: #7e7373;
+}
+
+/* Collapsed Sidebar */
+.sidebar.open {
+  width: 80px;
+  padding-left: 8px;
+}
+
+.sidebar.open h2 {
+  opacity: 0; /* Hide title when collapsed */
+}
+
+.sidebar.open .link-text {
+  opacity: 0; /* Hide text, only icons remain */
+}
+
+.sidebar.open ul li {
+  padding-right: 0px; /* Less horizontal padding when closed */
+}
+
+
+/* Mobile responsive */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 200px;
   }
-  &.active {
-    color: #24a7e9;
-    border-radius: 5px;
+
+  .sidebar.open {
+    width: 80px;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
   }
 }
