@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Add Category Summary</h2>
+<form [formGroup]="form" (ngSubmit)="submit()" mat-dialog-content>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Category</mat-label>
+    <input matInput formControlName="category" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Planned Amount</mat-label>
+    <input matInput type="number" formControlName="plannedAmount" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Actual Amount</mat-label>
+    <input matInput type="number" formControlName="actualAmount" required />
+  </mat-form-field>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="close()">Cancel</button>
+    <button mat-button color="primary" type="submit" [disabled]="form.invalid">Add</button>
+  </mat-dialog-actions>
+</form>

@@ -2,11 +2,11 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/finflow
     username: postgres
-    password: fadwa
+    password: postgres
     driver-class-name: org.postgresql.Driver
 
   main:
-    allow-bean-definition-overriding: true
+   allow-bean-definition-overriding: true
 
   jpa:
     hibernate:

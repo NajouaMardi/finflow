@@ -13,10 +13,15 @@
 
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import {NgForOf, NgIf} from "@angular/common";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   standalone: true,
+  imports: [
+    NgIf,
+    NgForOf
+  ],
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {

@@ -1,0 +1,85 @@
+
+<div class="stepper-wrapper">
+  <mat-card class="stepper-card">
+
+    <h2 class="stepper-title">Monthly Budget Planner</h2>
+
+
+    <mat-stepper [linear]="false" #stepper>
+  <!-- Step 1: Income -->
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup" class="centered-step-form">
+      <ng-template matStepLabel>Enter your income</ng-template>
+      <p class="step-instruction">
+        Please enter your monthly income. This will help us tailor your budget plan.
+      </p>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Income</mat-label>
+        <input matInput type="number" formControlName="incomeCtrl" placeholder="Your monthly income" required>
+      </mat-form-field>
+      <div class="button-row">
+        <button mat-button matStepperNext [disabled]="firstFormGroup.invalid">Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!-- Step 2: Add categories -->
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup" (ngSubmit)="addCategory()" class="centered-step-form">
+      <ng-template matStepLabel>Add categories</ng-template>
+      <p class="step-instruction">
+        Add all the budget categories you want to track (e.g., Food, Rent, Utilities).
+      </p>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Category</mat-label>
+        <input matInput formControlName="categoryCtrl" placeholder="Enter a category" required>
+      </mat-form-field>
+      <button mat-mini-fab color="primary" (click)="addCategory()" type="button" [disabled]="secondFormGroup.invalid" aria-label="Add category">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <div *ngIf="categories.length > 0" class="categories-container">
+        <h4>Added Categories:</h4>
+        <div class="category-list">
+          <div *ngFor="let cat of categories; let i = index" class="category-item mat-elevation-z2">
+            {{ cat }}
+            <button mat-icon-button color="warn" (click)="removeCategory(i)" aria-label="Remove category">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-row" style="margin-top: 2em;">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext [disabled]="categories.length === 0">Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!-- Step 3: Enter budgets -->
+  <mat-step>
+    <ng-template matStepLabel>Set budgets for categories</ng-template>
+
+
+    <form [formGroup]="budgetForm" class="centered-step-form">
+      <p class="step-instruction">
+        Set your budget amounts for each category you added.
+      </p>
+      <div *ngFor="let cat of categories; let i = index" style="margin-bottom: 1em;">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>{{ cat }} Budget</mat-label>
+          <input matInput type="number" [formControlName]="i" placeholder="Enter budget for {{ cat }}" required>
+        </mat-form-field>
+      </div>
+    </form>
+
+    <div class="button-row">
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button color="primary" (click)="finish()" [disabled]="!budgetForm.valid">Finish</button>
+    </div>
+  </mat-step>
+</mat-stepper>
+</mat-card>
+</div>

@@ -1,1 +1,91 @@
-<p>USER HOME WHERE THEY COULD PREPLAN THEIR SPENDINGS</p>
+<div class="user-home-container">
+
+
+
+
+
+
+
+
+  <!-- Top bar: Welcome + Search -->
+
+
+  <div class="top-section">
+
+    <div class="summary-cards" style="display: flex; gap: 20px; margin-bottom: 20px;">
+      <div class="card" style="
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      border-radius: 8px;
+      flex: 1;
+      color: #33091e;
+    ">
+        <h3>Income</h3>
+        <p style="font-size: 24px; font-weight: 700;">
+          {{ monthlyIncome }} MAD
+        </p>
+        <small>Your total income earned for the current month.</small>
+      </div>
+
+      <div class="card" style="
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      border-radius: 8px;
+      flex: 1;
+      color: #33091e;
+    ">
+        <h3>Budget</h3>
+        <p style="font-size: 24px; font-weight: 700;">
+          {{ monthlyBudget  }} MAD
+        </p>
+        <small>The amount you have planned to spend this month.</small>
+      </div>
+
+      <div class="card" style="
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      border-radius: 8px;
+      flex: 1;
+      color: #33091e;
+    ">
+        <h3>Savings</h3>
+        <p style="font-size: 24px; font-weight: 700;">
+          {{ savedAmount  }} MAD
+        </p>
+        <small>How much money you have saved after expenses this month.</small>
+      </div>
+    </div>
+
+    <app-budget-chart *ngIf="fullUser" [userId]="fullUser.id" #budgetChart></app-budget-chart>
+  </div>
+
+  <!-- Bottom row: category summary (larger width) -->
+  <!-- Category Summary Title + Controls -->
+  <div class="bottom-section" style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+
+    <!-- Title -->
+    <h4 style="font-weight: 700; color: #2d0618;">Category Summary</h4>
+
+    <!-- Filter and Add Button -->
+    <div style="display: flex; align-items: center; gap: 20px;">
+
+      <!-- Month-Year Selector -->
+
+
+      <!-- Add Category Button -->
+      <button mat-mini-fab style="
+    background-color: #800020;  /* Burgundy */
+    color: white;"
+             (click)="openAddCategoryDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <app-category-summary *ngIf="fullUser" [userId]="fullUser.id" (dataUpdated)="onDataUpdated()"
+                        [searchTerm]="searchTerm"></app-category-summary>
+
+</div>
